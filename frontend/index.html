@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Desi-Scribe — AI Marketing Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ── LANDING PAGE ── -->
+<div id="landingPage" class="landing">
+
+  <!-- Top nav bar -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <span class="nav-logo">DS</span>
+      <span class="nav-name">Desi<span class="accent">Scribe</span></span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-tag">v2.0</span>
+      <button id="desiDescribeBtn" class="btn-primary">
+        Launch Studio <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      AI-Powered · Multilingual · Free
+    </div>
+
+    <h1 class="hero-title">
+      Turn your product<br/>
+      into a <span class="hero-gradient">professional ad</span><br/>
+      in seconds.
+    </h1>
+
+    <p class="hero-sub">
+      Built for Indian small businesses. Speak Hindi, Tamil, Marathi — or any language.<br/>
+      No design skills. No prompt engineering. Just describe what you sell.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary btn-large" id="heroLaunchBtn">
+        <i class="fa-solid fa-bolt"></i> Start Creating
+      </button>
+      <div class="hero-stat-row">
+        <div class="hero-stat"><span class="stat-num">7+</span><span class="stat-label">Languages</span></div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat"><span class="stat-num">2</span><span class="stat-label">Formats</span></div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat"><span class="stat-num">15s</span><span class="stat-label">Avg. time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+      <h3>Voice Input</h3>
+      <p>Speak your business details in any language. No typing required.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <h3>AI Poster Generation</h3>
+      <p>FLUX AI generates a product image. Your slogan is baked right in.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <h3>WhatsApp Ready</h3>
+      <p>Square and Story formats. Download and share in one tap.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fa-solid fa-language"></i></div>
+      <h3>7 Languages</h3>
+      <p>Hindi, Tamil, Marathi, English, Spanish, French, German.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── STUDIO MODAL (full screen) ── -->
+<div id="studioModal" class="studio-overlay">
+  <div class="studio">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="nav-logo">DS</span>
+        <span class="nav-name">Desi<span class="accent">Scribe</span></span>
+      </div>
+
+      <div class="sidebar-section-label">Input</div>
+
+      <!-- Language -->
+      <div class="field-group">
+        <label class="field-label"><i class="fa-solid fa-globe"></i> Language</label>
+        <select id="languageSelect" class="ds-select">
+          <option value="English">🇬🇧 English</option>
+          <option value="Hindi">🇮🇳 Hindi (हिंदी)</option>
+          <option value="Tamil">🇮🇳 Tamil</option>
+          <option value="Marathi">🇮🇳 Marathi</option>
+          <option value="Spanish">🇪🇸 Spanish</option>
+          <option value="French">🇫🇷 French</option>
+          <option value="German">🇩🇪 German</option>
+        </select>
+      </div>
+
+      <!-- Business Name -->
+      <div class="field-group">
+        <label class="field-label"><i class="fa-solid fa-store"></i> Business Name</label>
+        <input id="businessType" type="text" class="ds-input" placeholder="e.g. Sharma Sarees"/>
+      </div>
+
+      <!-- Description -->
+      <div class="field-group">
+        <label class="field-label"><i class="fa-solid fa-align-left"></i> Product / Offer</label>
+        <div style="display:flex; gap:10px; align-items:center;">
+  <textarea id="productDesc" class="ds-textarea"></textarea>
+
+  <button id="micBtn" class="icon-btn">
+    <i class="fa-solid fa-microphone"></i>
+  </button>
+</div>
+      </div>
+
+      <!-- Tone -->
+      <div class="field-group">
+        <label class="field-label"><i class="fa-solid fa-sliders"></i> Tone</label>
+        <select id="adType" class="ds-select">
+          <option value="Catchy">🎯 Catchy</option>
+          <option value="Professional">💼 Professional</option>
+          <option value="Luxury">💎 Luxury</option>
+          <option value="Humorous">😄 Humorous</option>
+        </select>
+      </div>
+
+      <!-- Format -->
+      <div class="field-group">
+        <label class="field-label"><i class="fa-solid fa-expand"></i> Format</label>
+        <div class="format-toggle">
+          <button class="fmt-btn active" data-value="Square">
+            <i class="fa-solid fa-square"></i> Square
+          </button>
+          <button class="fmt-btn" data-value="Story">
+            <i class="fa-solid fa-mobile-screen"></i> Story
+          </button>
+        </div>
+        <input type="hidden" id="posterFormat" value="Square"/>
+      </div>
+
+      <!-- Upload Product Image -->
+<div class="field-group">
+  <label class="field-label">
+    <i class="fa-solid fa-camera"></i> Upload Product Image
+  </label>
+  
+  <button class="upload-btn" id="uploadTrigger">
+    <i class="fa-solid fa-cloud-arrow-up"></i> Choose product image
+  </button>
+  
+  <input type="file" id="imageUploadInput" accept="image/*" style="display:none;"/>
+  
+  <label id="useImageToggleContainer" style="display:none; margin-top: 10px; cursor: pointer; font-size: 0.9em; align-items: center; gap: 8px;">
+    <input type="checkbox" id="useUploadedImageToggle" checked style="accent-color: #FFD700; width: 16px; height: 16px;"/>
+    Use this image for the poster
+  </label>
+</div>
+<!-- Upload Logo -->
+<div class="field-group">
+  <label class="field-label">
+    <i class="fa-solid fa-image"></i> Upload Logo (Optional)
+  </label>
+
+  <input 
+    type="file" 
+    id="logoInput" 
+    accept="image/png, image/jpeg" 
+    class="ds-input"
+  />
+
+  <!-- 🔥 NEW: Logo Position Selector -->
+  <label class="field-label" style="margin-top:10px;">
+    <i class="fa-solid fa-location-dot"></i> Logo Position
+  </label>
+
+  <select id="logoPosition" class="ds-input">
+    <option value="top_right">Top Right</option>
+    <option value="top_left">Top Left</option>
+    <option value="bottom_right">Bottom Right</option>
+    <option value="bottom_center">Bottom Center</option>
+  </select>
+
+  <small style="color:#888; font-size:12px;">
+    Choose where your logo should appear on the poster
+  </small>
+</div>
+
+<!-- Actions Label -->
+<div class="sidebar-section-label" style="margin-top:auto;">Actions</div>
+      <!-- Action buttons -->
+      <button id="generateSloganBtn" class="action-btn slogan-btn">
+        <i class="fa-solid fa-pen-nib"></i> Generate Slogan
+      </button>
+      <button id="generatePosterBtn" class="action-btn poster-btn">
+        <i class="fa-solid fa-clapperboard"></i> Generate Poster
+      </button>
+
+      <!-- Logout -->
+      <button onclick="handleLogout()" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </aside>
+
+    <!-- Main canvas -->
+    <main class="canvas">
+
+      <!-- Canvas top bar -->
+      <div class="canvas-topbar">
+        <div class="canvas-title">
+          <span class="topbar-label">Output</span>
+          <span id="canvasStatus" class="status-chip idle">Idle</span>
+        </div>
+        <button id="closeStudio" class="icon-btn" title="Close Studio">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Feed / output area -->
+      <div id="chatMessages" class="feed">
+        <!-- Welcome state -->
+        <div class="welcome-state" id="welcomeState">
+          <div class="welcome-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h2>Ready to create</h2>
+          <p>Fill in your business details on the left and hit Generate Poster or Generate Slogan.</p>
+          <div class="welcome-hints">
+            <div class="hint-chip"><i class="fa-solid fa-camera"></i> Upload a product photo for auto-fill</div>
+            <div class="hint-chip"><i class="fa-solid fa-language"></i> Switch language anytime</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── LOGIN MODAL ── -->
+<div id="loginModal" class="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-brand">
+        <span class="nav-logo">DS</span>
+        <span>DesiScribe</span>
+      </div>
+      <button class="icon-btn" onclick="closeLogin()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <h2 class="auth-title">Welcome back</h2>
+    <p class="auth-sub">Sign in to your account</p>
+    <div class="auth-fields">
+      <input id="loginEmail"    type="email"    class="ds-input" placeholder="Email address"/>
+      <input id="loginPassword" type="password" class="ds-input" placeholder="Password"/>
+      <button class="btn-primary w-full" onclick="loginUser()">Sign in</button>
+      <div class="auth-divider"><span>or</span></div>
+      <button class="google-btn" onclick="googleLogin()">
+        <i class="fa-brands fa-google"></i> Continue with Google
+      </button>
+      <p class="auth-switch" onclick="openSignup()">No account? <span>Create one</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ── SIGNUP MODAL ── -->
+<div id="signupModal" class="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-brand">
+        <span class="nav-logo">DS</span>
+        <span>DesiScribe</span>
+      </div>
+      <button class="icon-btn" onclick="closeSignup()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <h2 class="auth-title">Create account</h2>
+    <p class="auth-sub">Start creating in seconds</p>
+    <div class="auth-fields">
+      <input id="signupName"     type="text"     class="ds-input" placeholder="Full name"/>
+      <input id="signupEmail"    type="email"    class="ds-input" placeholder="Email address"/>
+      <input id="signupPassword" type="password" class="ds-input" placeholder="Password"/>
+      <button class="btn-primary w-full" onclick="signupUser()">Create account</button>
+      <div class="auth-divider"><span>or</span></div>
+      <button class="google-btn" onclick="googleLogin()">
+        <i class="fa-brands fa-google"></i> Continue with Google
+      </button>
+      <p class="auth-switch" onclick="openLogin()">Already have an account? <span>Sign in</span></p>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+frontend/
+app.py
+font.ttf
+requirements.txt
+README.md
+.gitignore
+Procfile
