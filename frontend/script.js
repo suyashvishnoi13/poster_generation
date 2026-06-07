@@ -3,7 +3,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/fi
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const API_BASE_URL = "http://127.0.0.1:5001";
+  const API_BASE_URL = "https://poster-generation.onrender.com";
 
   // ── DOM REFS ──
   const landingPage   = document.getElementById("landingPage");
