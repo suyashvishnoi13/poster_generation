@@ -2,19 +2,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBlR-bcFs-p20Nt2acl21dQVLDx8dLE2VA",
-    authDomain: "desi-scribe.firebaseapp.com",
-    projectId: "desi-scribe",
-    storageBucket: "desi-scribe.firebasestorage.app",
-    messagingSenderId: "628324349374",
-    appId: "1:628324349374:web:4ce4790b36a85bf2d175ef"
+    apiKey: "AIzaSyB2L3cLsuTr8qRLoisDlwYM8oqUM_LS9n4",
+    authDomain: "desicribe-3cc39.firebaseapp.com",
+    projectId: "desicribe-3cc39",
+    storageBucket: "desicribe-3cc39.firebasestorage.app",
+    messagingSenderId: "152252582038",
+    appId: "1:152252582038:web:51d6fa0a7fe6beab981ab7"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Export Auth and Database for use in other files
 export const auth = getAuth(app);
 export const db = getFirestore(app);
