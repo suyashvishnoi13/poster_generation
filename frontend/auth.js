@@ -1,4 +1,3 @@
-```javascript
 import { auth, db } from "./firebase.js";
 
 import {
@@ -7,9 +6,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     signOut,
-    onAuthStateChanged,
-    setPersistence,
-    browserLocalPersistence
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
 import {
@@ -19,28 +16,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 
-// ============================================================
-// AUTH PERSISTENCE
-// ============================================================
-
-// Explicitly keep users logged in across page refreshes/browser restarts.
-export const authPersistenceReady = setPersistence(
-    auth,
-    browserLocalPersistence
-).catch((error) => {
-    console.error("Firebase persistence error:", error);
-});
+// Export auth
+export { auth };
 
 
-// ============================================================
-// AUTH STATE READY
-// ============================================================
-
-// Firebase needs a moment after page load to restore the previous
-// logged-in user from browser storage.
-//
-// This promise resolves ONCE after Firebase has determined whether
-// the user is logged in or logged out.
+// Wait for Firebase to restore the existing login session
 export const authReady = new Promise((resolve) => {
 
     let resolved = false;
@@ -57,27 +37,14 @@ export const authReady = new Promise((resolve) => {
 });
 
 
-// Export auth so script.js can access auth.currentUser
-export { auth };
-
-
-// ============================================================
-// AUTH STATE OBSERVER
-// ============================================================
-
+// Monitor auth state
 export const observeAuth = (callback) => {
     return onAuthStateChanged(auth, callback);
 };
 
 
-// ============================================================
-// EMAIL/PASSWORD SIGNUP
-// ============================================================
-
+// Email signup
 export const signup = async (name, email, password) => {
-
-    // Make sure persistence is configured before signing in.
-    await authPersistenceReady;
 
     const cred = await createUserWithEmailAndPassword(
         auth,
@@ -85,9 +52,6 @@ export const signup = async (name, email, password) => {
         password
     );
 
-    // Save user profile.
-    // If Firestore has a temporary problem, don't prevent the
-    // user from entering the application.
     try {
 
         await setDoc(
@@ -103,7 +67,7 @@ export const signup = async (name, email, password) => {
     } catch (error) {
 
         console.error(
-            "User created, but Firestore profile save failed:",
+            "Firestore profile error:",
             error
         );
 
@@ -113,13 +77,8 @@ export const signup = async (name, email, password) => {
 };
 
 
-// ============================================================
-// EMAIL/PASSWORD LOGIN
-// ============================================================
-
+// Email login
 export const login = async (email, password) => {
-
-    await authPersistenceReady;
 
     const cred = await signInWithEmailAndPassword(
         auth,
@@ -131,24 +90,18 @@ export const login = async (email, password) => {
 };
 
 
-// ============================================================
-// GOOGLE LOGIN
-// ============================================================
-
+// Google login
 export const googleAuth = async () => {
-
-    await authPersistenceReady;
 
     const provider = new GoogleAuthProvider();
 
-    // Google authentication
-    const res = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(
+        auth,
+        provider
+    );
 
-    const user = res.user;
+    const user = result.user;
 
-    // Authentication is already successful at this point.
-    // Firestore profile saving should NOT prevent the user
-    // from entering the application.
     try {
 
         await setDoc(
@@ -167,7 +120,7 @@ export const googleAuth = async () => {
     } catch (error) {
 
         console.error(
-            "Google login successful, but Firestore profile save failed:",
+            "Firestore profile error:",
             error
         );
 
@@ -177,11 +130,7 @@ export const googleAuth = async () => {
 };
 
 
-// ============================================================
-// LOGOUT
-// ============================================================
-
+// Logout
 export const logout = () => {
     return signOut(auth);
 };
-```
